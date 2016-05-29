@@ -1,6 +1,7 @@
 (function() {
-	var elTable = document.querySelector('.js-table');
-	Excell.create({
-		el: elTable,
+	Array.from(document.querySelectorAll('.js-table')).forEach(function(elTable) {
+		Excell.create({
+			el: elTable,
+		});
 	});
 })();
