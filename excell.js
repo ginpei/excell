@@ -7,10 +7,17 @@ function Excell(options) {
 	}
 }
 
-Excell.create = function(options) {
-	var instance = new Excell(options);
-	return instance;
-};
+Object.assign(Excell, {
+	KEY_LEFT: 37,
+	KEY_UP: 38,
+	KEY_RIGHT: 39,
+	KEY_DOWN: 40,
+
+	create: function(options) {
+		var instance = new Excell(options);
+		return instance;
+	},
+});
 
 if (!Object.assign) {
 	Object.assign = function(orig) {
@@ -39,6 +46,7 @@ Object.assign(Excell.prototype, {
 		el.addEventListener('click', this.el_click.bind(this));
 		el.addEventListener('dblclick', this.el_dblclick.bind(this));
 		document.addEventListener('click', this.document_click.bind(this));
+		document.addEventListener('keypress', this.document_keypress.bind(this));
 	},
 
 	/**
@@ -122,6 +130,32 @@ Object.assign(Excell.prototype, {
 	},
 
 	/**
+	 */
+	left: function() {
+		this._moveHorizontally(-1);
+	},
+
+	/**
+	 */
+	right: function() {
+		this._moveHorizontally(+1);
+	},
+
+	_moveHorizontally: function(direction) {
+		var elCur = this.elActiveCell;
+		if (!elCur) {
+			return;
+		}
+
+		var elRow = elCur.parentElement;
+		var index = Array.from(elRow.children).indexOf(elCur);
+		var elNext = elRow.children[index + direction];
+		if (elNext) {
+			this.select(elNext);
+		}
+	},
+
+	/**
 	 * @param {Event} event
 	 */
 	el_click: function(event) {
@@ -148,6 +182,25 @@ Object.assign(Excell.prototype, {
 		var elCell = this._findEventCell(event);
 		if (elCell !== this.elActiveCell) {
 			this.select();
+		}
+	},
+
+	/**
+	 * @param {Event} event
+	 */
+	document_keypress: function(event) {
+		var keyCod = event.keyCode;
+		if (keyCod === Excell.KEY_LEFT) {
+			this.left();
+		}
+		else if (keyCod === Excell.KEY_UP) {
+			// this.up();
+		}
+		else if (keyCod === Excell.KEY_RIGHT) {
+			this.right();
+		}
+		else if (keyCod === Excell.KEY_DOWN) {
+			// this.down();
 		}
 	},
 });
