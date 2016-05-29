@@ -37,19 +37,32 @@ Object.assign(Excell.prototype, {
 	_bind: function() {
 		var el = this.el;
 		el.addEventListener('click', this.el_click.bind(this));
+		el.addEventListener('dblclick', this.el_dblclick.bind(this));
 	},
 
 	/**
 	 * @param {HTMLElement} elCell
 	 */
-	startEdit: function(elCell) {
+	select: function(elCell) {
+		if (this.elActiveCell) {
+			this.elActiveCell.classList.remove('excell-active');
+		}
+
+		elCell.classList.add('excell-active');
+		this.elActiveCell = elCell;
+	},
+
+	/**
+	 * @param {HTMLElement} elCell
+	 */
+	edit: function(elCell) {
 		var elInput = this._createElInput(elCell);
 		elCell.innerHTML = '';
 		elCell.appendChild(elInput);
 		elCell.classList.add('excell-editing');
 		elInput.select();
 
-		this.elCurCell = elCell;
+		this.elEditingCell = elCell;
 		this.elInput = elInput;
 	},
 
@@ -84,13 +97,13 @@ Object.assign(Excell.prototype, {
 	/**
 	 */
 	_finishEditing: function() {
-		var elCell = this.elCurCell;
+		var elCell = this.elEditingCell;
 		var elInput = this.elInput;
 
 		elCell.textContent = elInput.value;
 		elCell.classList.remove('excell-editing');
 
-		this.elCurCell = null;
+		this.elEditingCell = null;
 		this.elInput = null;
 	},
 
@@ -110,7 +123,17 @@ Object.assign(Excell.prototype, {
 	el_click: function(event) {
 		var elCell = this._findEventCell(event);
 		if (elCell) {
-			this.startEdit(elCell);
+			this.select(elCell);
+		}
+	},
+
+	/**
+	 * @param {Event} event
+	 */
+	el_dblclick: function(event) {
+		var elCell = this._findEventCell(event);
+		if (elCell) {
+			this.edit(elCell);
 		}
 	},
 });
