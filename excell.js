@@ -403,6 +403,16 @@ Object.assign(Excell.prototype, {
 			this.down(options);
 			handled = true;
 		}
+		else if (keyCode === Excell.KEY_HOME) {
+			options.ctrl = true;
+			this.left(options);
+			handled = true;
+		}
+		else if (keyCode === Excell.KEY_END) {
+			options.ctrl = true;
+			this.right(options);
+			handled = true;
+		}
 		else if (keyCode === Excell.KEY_ENTER) {
 			if (status === 'active') {
 				this.edit();
