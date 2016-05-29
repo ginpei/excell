@@ -175,68 +175,122 @@ Object.assign(Excell.prototype, {
 	},
 
 	/**
+	 * @param {boolean} options.alt
+	 * @param {boolean} options.ctrl
+	 * @param {boolean} options.meta
+	 * @param {boolean} options.shift
 	 */
-	left: function() {
+	left: function(options) {
 		if (this.status() === 'active') {
-			this._moveHorizontally(-1);
+			this._moveHorizontally(-1, options);
 		}
 	},
 
 	/**
+	 * @param {boolean} options.alt
+	 * @param {boolean} options.ctrl
+	 * @param {boolean} options.meta
+	 * @param {boolean} options.shift
 	 */
-	right: function() {
+	right: function(options) {
 		if (this.status() === 'active') {
-			this._moveHorizontally(+1);
+			this._moveHorizontally(+1, options);
 		}
 	},
 
 	/**
 	 * @param {number} direction
+	 * @param {boolean} options.alt
+	 * @param {boolean} options.ctrl
+	 * @param {boolean} options.meta
+	 * @param {boolean} options.shift
 	 */
-	_moveHorizontally: function(direction) {
+	_moveHorizontally: function(direction, options) {
 		var elCur = this.elActiveCell;
 		if (!elCur) {
 			return;
 		}
 
+		if (options && options.ctrl) {
+			direction *= Infinity;
+		}
+
+		var index;
 		var elRow = elCur.parentElement;
-		var index = Array.from(elRow.children).indexOf(elCur);
-		var elNext = elRow.children[index + direction];
+		if (direction === Infinity) {
+			index = elRow.children.length - 1;
+		}
+		else if (direction === -Infinity) {
+			index = 0;
+		}
+			else {
+			var curIndex = Array.from(elRow.children).indexOf(elCur);
+			index = curIndex + direction;
+		}
+
+		var elNext = elRow.children[index];
 		if (elNext) {
 			this.select(elNext);
 		}
 	},
 
 	/**
+	 * @param {boolean} options.alt
+	 * @param {boolean} options.ctrl
+	 * @param {boolean} options.meta
+	 * @param {boolean} options.shift
 	 */
-	up: function() {
+	up: function(options) {
 		if (this.status() === 'active') {
-			this._moveVertically(-1);
+			this._moveVertically(-1, options);
 		}
 	},
 
 	/**
+	 * @param {boolean} options.alt
+	 * @param {boolean} options.ctrl
+	 * @param {boolean} options.meta
+	 * @param {boolean} options.shift
 	 */
-	down: function() {
+	down: function(options) {
 		if (this.status() === 'active') {
-			this._moveVertically(+1);
+			this._moveVertically(+1, options);
 		}
 	},
 
 	/**
 	 * @param {number} direction
+	 * @param {boolean} options.alt
+	 * @paran {boolean} options.ctrl
+	 * @param {boolean} options.meta
+	 * @param {boolean} options.shift
 	 */
-	_moveVertically: function(direction) {
+	_moveVertically: function(direction, options) {
 		var elCur = this.elActiveCell;
 		if (!elCur) {
 			return;
 		}
 
+		if (options && options.ctrl) {
+			direction *= Infinity;
+		}
+
+		var vIndex;
 		var elRow = elCur.parentElement;
 		var elTable = elRow.parentElement;
 		var hIndex = Array.from(elRow.children).indexOf(elCur);
-		var vIndex = Array.from(elTable.children).indexOf(elRow);
-		var elNextRow = elTable.children[vIndex + direction];
+		if (direction === Infinity) {
+			vIndex = elTable.children.length - 1;
+		}
+		else if (direction === -Infinity) {
+			vIndex = 0;
+		}
+			else {
+			var vCurIndex = Array.from(elTable.children).indexOf(elRow);
+			vIndex = vCurIndex + direction;
+		}
+
+		var elNextRow = elTable.children[vIndex];
 		if (elNextRow) {
 			var elNext = elNextRow.children[hIndex];
 			if (elNext) {
@@ -321,18 +375,24 @@ Object.assign(Excell.prototype, {
 	document_keypress: function(event) {
 		var keyCode = event.keyCode;
 		var status = this.status();
+		var options = {
+			alt: event.altKey,
+			ctrl: event.ctrlKey,
+			meta: event.metaKey,
+			shift: event.shiftKey,
+		};
 
 		if (keyCode === Excell.KEY_LEFT) {
-			this.left();
+			this.left(options);
 		}
 		else if (keyCode === Excell.KEY_UP) {
-			this.up();
+			this.up(options);
 		}
 		else if (keyCode === Excell.KEY_RIGHT) {
-			this.right();
+			this.right(options);
 		}
 		else if (keyCode === Excell.KEY_DOWN) {
-			this.down();
+			this.down(options);
 		}
 		else if (keyCode === Excell.KEY_ENTER) {
 			if (status === 'active') {
