@@ -159,6 +159,40 @@ Object.assign(Excell.prototype, {
 	},
 
 	/**
+	 */
+	up: function() {
+		this._moveVertically(-1);
+	},
+
+	/**
+	 */
+	down: function() {
+		this._moveVertically(+1);
+	},
+
+	/**
+	 * @param {number} direction
+	 */
+	_moveVertically: function(direction) {
+		var elCur = this.elActiveCell;
+		if (!elCur) {
+			return;
+		}
+
+		var elRow = elCur.parentElement;
+		var elTable = elRow.parentElement;
+		var hIndex = Array.from(elRow.children).indexOf(elCur);
+		var vIndex = Array.from(elTable.children).indexOf(elRow);
+		var elNextRow = elTable.children[vIndex + direction];
+		if (elNextRow) {
+			var elNext = elNextRow.children[hIndex];
+			if (elNext) {
+				this.select(elNext);
+			}
+		}
+	},
+
+	/**
 	 * @param {Event} event
 	 */
 	el_click: function(event) {
@@ -197,13 +231,13 @@ Object.assign(Excell.prototype, {
 			this.left();
 		}
 		else if (keyCod === Excell.KEY_UP) {
-			// this.up();
+			this.up();
 		}
 		else if (keyCod === Excell.KEY_RIGHT) {
 			this.right();
 		}
 		else if (keyCod === Excell.KEY_DOWN) {
-			// this.down();
+			this.down();
 		}
 	},
 });
