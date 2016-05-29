@@ -141,6 +141,9 @@ Object.assign(Excell.prototype, {
 		this._moveHorizontally(+1);
 	},
 
+	/**
+	 * @param {number} direction
+	 */
 	_moveHorizontally: function(direction) {
 		var elCur = this.elActiveCell;
 		if (!elCur) {
