@@ -96,10 +96,19 @@ Object.assign(Excell.prototype, {
 
 	/**
 	 * @param {Event} event
+	 * @returns {HTMLElement}
 	 */
-	el_click: function(event) {
+	_findEventCell: function(event) {
 		var elTarget = event.target;
 		var elCell = elTarget.closest('td,th');
+		return elCell;
+	},
+
+	/**
+	 * @param {Event} event
+	 */
+	el_click: function(event) {
+		var elCell = this._findEventCell(event);
 		if (elCell) {
 			this.startEdit(elCell);
 		}
