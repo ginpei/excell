@@ -127,7 +127,7 @@ Object.assign(Excell.prototype, {
 		elInput.style.height = settings.height + 'px';
 
 		this._listener_input_blur = function(event) {
-			this._finishEditing();
+			this.finishEditing();
 		}.bind(this);
 		elInput.addEventListener('blur', this._listener_input_blue);
 
@@ -136,7 +136,7 @@ Object.assign(Excell.prototype, {
 
 	/**
 	 */
-	_finishEditing: function() {
+	finishEditing: function() {
 		var elCell = this.elEditingCell;
 		var elInput = this.elInput;
 
@@ -339,7 +339,7 @@ Object.assign(Excell.prototype, {
 				this.edit();
 			}
 			else if (status == 'editing') {
-				this._finishEditing();
+				this.finishEditing();
 			}
 		}
 		else if (keyCode === Excell.KEY_ESCAPE) {
