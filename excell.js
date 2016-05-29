@@ -10,6 +10,10 @@ function Excell(options) {
 Object.assign(Excell, {
 	KEY_ENTER: 13,
 	KEY_ESCAPE: 27,
+	KEY_PAGEUP: 33,
+	KEY_PAGEDOWN: 34,
+	KEY_END: 35,
+	KEY_HOME: 36,
 	KEY_LEFT: 37,
 	KEY_UP: 38,
 	KEY_RIGHT: 39,
