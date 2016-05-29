@@ -115,6 +115,7 @@ Object.assign(Excell.prototype, {
 		var elInput = document.createElement('input');
 
 		elInput.value = settings.textContent;
+		elInput.originalValue = settings.textContent;
 		elInput.className = settings.className;
 		elInput.style.width = settings.width + 'px';
 		elInput.style.height = settings.height + 'px';
@@ -139,6 +140,17 @@ Object.assign(Excell.prototype, {
 
 		this.elEditingCell = null;
 		this.elInput = null;
+	},
+
+	/**
+	 */
+	cancelEditing: function() {
+		if (!this.elInput) {
+			return;
+		}
+
+		this.elInput.value = this.elInput.originalValue;
+		this.elInput.blur();
 	},
 
 	/**
@@ -271,6 +283,9 @@ Object.assign(Excell.prototype, {
 		}
 		else if (keyCode === Excell.KEY_ENTER) {
 			this.edit();
+		}
+		else if (keyCode === Excell.KEY_ESCAPE) {
+			this.cancelEditing();
 		}
 	},
 });
