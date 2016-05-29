@@ -52,6 +52,23 @@ Object.assign(Excell.prototype, {
 	},
 
 	/**
+	 * @returns {string}
+	 */
+	status: function() {
+		var status;
+		if (this.elInput) {
+			status = 'editing';
+		}
+		else if (this.elActiveCell) {
+			status = 'active';
+		}
+		else {
+			status = 'ready';
+		}
+		return status;
+	},
+
+	/**
 	 * @param {HTMLElement} elCell
 	 */
 	select: function(elCell) {
