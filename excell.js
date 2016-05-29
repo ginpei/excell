@@ -154,13 +154,17 @@ Object.assign(Excell.prototype, {
 	/**
 	 */
 	left: function() {
-		this._moveHorizontally(-1);
+		if (this.status() === 'active') {
+			this._moveHorizontally(-1);
+		}
 	},
 
 	/**
 	 */
 	right: function() {
-		this._moveHorizontally(+1);
+		if (this.status() === 'active') {
+			this._moveHorizontally(+1);
+		}
 	},
 
 	/**
@@ -183,13 +187,17 @@ Object.assign(Excell.prototype, {
 	/**
 	 */
 	up: function() {
-		this._moveVertically(-1);
+		if (this.status() === 'active') {
+			this._moveVertically(-1);
+		}
 	},
 
 	/**
 	 */
 	down: function() {
-		this._moveVertically(+1);
+		if (this.status() === 'active') {
+			this._moveVertically(+1);
+		}
 	},
 
 	/**
