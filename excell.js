@@ -14,6 +14,7 @@ Object.assign(Excell, {
 	KEY_UP: 38,
 	KEY_RIGHT: 39,
 	KEY_DOWN: 40,
+	KEY_DELETE: 46,
 
 	create: function(options) {
 		var instance = new Excell(options);
@@ -159,6 +160,20 @@ Object.assign(Excell.prototype, {
 	},
 
 	/**
+	 */
+	deleteText: function(elCell) {
+		if (!elCell) {
+			elCell = this.elActiveCell;
+
+			if (!elCell) {
+				return;
+			}
+		}
+
+		elCell.textContent = '';
+	},
+
+	/**
 	 * @param {Event} event
 	 * @returns {HTMLElement}
 	 */
@@ -291,6 +306,9 @@ Object.assign(Excell.prototype, {
 		}
 		else if (keyCode === Excell.KEY_ESCAPE) {
 			this.cancelEditing();
+		}
+		else if (keyCode === Excell.KEY_DELETE) {
+			this.deleteText();
 		}
 	},
 });
