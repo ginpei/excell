@@ -126,11 +126,10 @@ Object.assign(Excell.prototype, {
 		elInput.style.width = settings.width + 'px';
 		elInput.style.height = settings.height + 'px';
 
-		var listener = function(event) {
+		this._listener_input_blur = function(event) {
 			this._finishEditing();
-			elInput.removeEventListener('blur', listener);
 		}.bind(this);
-		elInput.addEventListener('blur', listener);
+		elInput.addEventListener('blur', this._listener_input_blue);
 
 		return elInput;
 	},
@@ -140,6 +139,8 @@ Object.assign(Excell.prototype, {
 	_finishEditing: function() {
 		var elCell = this.elEditingCell;
 		var elInput = this.elInput;
+
+		elInput.removeEventListener('blur', this._listener_input_blue);
 
 		this.setText(elCell, elInput.value);
 		elCell.classList.remove('excell-editing');
@@ -319,6 +320,8 @@ Object.assign(Excell.prototype, {
 	 */
 	document_keypress: function(event) {
 		var keyCode = event.keyCode;
+		var status = this.status();
+
 		if (keyCode === Excell.KEY_LEFT) {
 			this.left();
 		}
@@ -332,7 +335,12 @@ Object.assign(Excell.prototype, {
 			this.down();
 		}
 		else if (keyCode === Excell.KEY_ENTER) {
-			this.edit();
+			if (status === 'active') {
+				this.edit();
+			}
+			else if (status == 'editing') {
+				this._finishEditing();
+			}
 		}
 		else if (keyCode === Excell.KEY_ESCAPE) {
 			this.cancelEditing();
