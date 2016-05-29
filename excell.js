@@ -161,7 +161,7 @@ Object.assign(Excell.prototype, {
 		}
 
 		this.elInput.value = this.elInput.originalValue;
-		this.elInput.blur();
+		this.finishEditing();
 	},
 
 	/**
