@@ -8,6 +8,8 @@ function Excell(options) {
 }
 
 Object.assign(Excell, {
+	KEY_ENTER: 13,
+	KEY_ESCAPE: 27,
 	KEY_LEFT: 37,
 	KEY_UP: 38,
 	KEY_RIGHT: 39,
