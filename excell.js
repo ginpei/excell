@@ -46,7 +46,7 @@ Object.assign(Excell.prototype, {
 		var elInput = this._createElInput(elCell);
 		elCell.innerHTML = '';
 		elCell.appendChild(elInput);
-		elCell.classList.add('excell-active');
+		elCell.classList.add('excell-editing');
 		elInput.select();
 
 		this.elCurCell = elCell;
@@ -88,7 +88,7 @@ Object.assign(Excell.prototype, {
 		var elInput = this.elInput;
 
 		elCell.textContent = elInput.value;
-		elCell.classList.remove('excell-active');
+		elCell.classList.remove('excell-editing');
 
 		this.elCurCell = null;
 		this.elInput = null;
