@@ -381,32 +381,45 @@ Object.assign(Excell.prototype, {
 			meta: event.metaKey,
 			shift: event.shiftKey,
 		};
+		var handled = false;
 
 		if (keyCode === Excell.KEY_LEFT) {
 			this.left(options);
+			handled = true;
 		}
 		else if (keyCode === Excell.KEY_UP) {
 			this.up(options);
+			handled = true;
 		}
 		else if (keyCode === Excell.KEY_RIGHT) {
 			this.right(options);
+			handled = true;
 		}
 		else if (keyCode === Excell.KEY_DOWN) {
 			this.down(options);
+			handled = true;
 		}
 		else if (keyCode === Excell.KEY_ENTER) {
 			if (status === 'active') {
 				this.edit();
+				handled = true;
 			}
 			else if (status == 'editing') {
 				this.finishEditing();
+				handled = true;
 			}
 		}
 		else if (keyCode === Excell.KEY_ESCAPE) {
 			this.cancelEditing();
+			handled = true;
 		}
 		else if (keyCode === Excell.KEY_DELETE) {
 			this.deleteText();
+			handled = true;
+		}
+
+		if (handled) {
+			event.preventDefault();
 		}
 	},
 });
