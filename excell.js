@@ -89,7 +89,12 @@ Object.assign(Excell.prototype, {
 	edit: function(elCell) {
 		if (!elCell) {
 			elCell = this.elActiveCell;
+
+			if (!elCell) {
+				return;
+			}
 		}
+
 		var elInput = this._createElInput(elCell);
 		elCell.innerHTML = '';
 		elCell.appendChild(elInput);
