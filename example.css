@@ -1,3 +1,8 @@
+body {
+	font-size: 16px;
+	line-height: 16px;
+}
+
 .table {
 	border-collapse: collapse;
 }
@@ -9,4 +14,11 @@
 .table th,
 .table td {
 	padding: 4px 8px;
+}
+.table th::before,
+.table td::before {
+	content: "";
+	display: inline-block;
+	height: 16px;
+	width: 0;
 }
