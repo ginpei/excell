@@ -114,7 +114,7 @@ Object.assign(Excell.prototype, {
 		var settings = {
 			className: 'excell-input',
 			height: elCell.clientHeight,
-			textContent: elCell.textContent,
+			textContent: this.getText(elCell),
 			width: elCell.clientWidth,
 		};
 
@@ -141,7 +141,7 @@ Object.assign(Excell.prototype, {
 		var elCell = this.elEditingCell;
 		var elInput = this.elInput;
 
-		elCell.textContent = elInput.value;
+		this.setText(elCell, elInput.value);
 		elCell.classList.remove('excell-editing');
 
 		this.elEditingCell = null;
@@ -242,6 +242,36 @@ Object.assign(Excell.prototype, {
 				this.select(elNext);
 			}
 		}
+	},
+
+	/**
+	 * @param {HTMLElement} elCell
+	 * @param {string} text
+	 */
+	setText: function(elCell, text) {
+		if (!elCell) {
+			elCell = this.elActiveCell;
+			if (!elCell) {
+				return;
+			}
+		}
+
+		elCell.textContent = text;
+	},
+
+	/**
+	 * @param {HTMLElement} elCell
+	 * @returns {string}
+	 */
+	getText: function(elCell) {
+		if (!elCell) {
+			elCell = this.elActiveCell;
+			if (!elCell) {
+				return;
+			}
+		}
+
+		return elCell.textContent;
 	},
 
 	/**
