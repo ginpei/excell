@@ -70,6 +70,9 @@ Object.assign(Excell.prototype, {
 	 * @param {HTMLElement} elCell
 	 */
 	edit: function(elCell) {
+		if (!elCell) {
+			elCell = this.elActiveCell;
+		}
 		var elInput = this._createElInput(elCell);
 		elCell.innerHTML = '';
 		elCell.appendChild(elInput);
@@ -240,6 +243,9 @@ Object.assign(Excell.prototype, {
 		}
 		else if (keyCode === Excell.KEY_DOWN) {
 			this.down();
+		}
+		else if (keyCode === Excell.KEY_ENTER) {
+			this.edit();
 		}
 	},
 });
