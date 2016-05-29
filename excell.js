@@ -38,6 +38,7 @@ Object.assign(Excell.prototype, {
 		var el = this.el;
 		el.addEventListener('click', this.el_click.bind(this));
 		el.addEventListener('dblclick', this.el_dblclick.bind(this));
+		document.addEventListener('click', this.document_click.bind(this));
 	},
 
 	/**
@@ -48,7 +49,10 @@ Object.assign(Excell.prototype, {
 			this.elActiveCell.classList.remove('excell-active');
 		}
 
-		elCell.classList.add('excell-active');
+		if (elCell) {
+			elCell.classList.add('excell-active');
+		}
+
 		this.elActiveCell = elCell;
 	},
 
@@ -134,6 +138,16 @@ Object.assign(Excell.prototype, {
 		var elCell = this._findEventCell(event);
 		if (elCell) {
 			this.edit(elCell);
+		}
+	},
+
+	/**
+	 * @param {Event} event
+	 */
+	document_click: function(event) {
+		var elCell = this._findEventCell(event);
+		if (elCell !== this.elActiveCell) {
+			this.select();
 		}
 	},
 });
