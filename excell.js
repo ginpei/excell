@@ -174,16 +174,6 @@ Object.assign(Excell.prototype, {
 	},
 
 	/**
-	 * @param {Event} event
-	 * @returns {HTMLElement}
-	 */
-	_findEventCell: function(event) {
-		var elTarget = event.target;
-		var elCell = elTarget.closest('td,th');
-		return elCell;
-	},
-
-	/**
 	 */
 	left: function() {
 		if (this.status() === 'active') {
@@ -252,6 +242,16 @@ Object.assign(Excell.prototype, {
 				this.select(elNext);
 			}
 		}
+	},
+
+	/**
+	 * @param {Event} event
+	 * @returns {HTMLElement}
+	 */
+	_findEventCell: function(event) {
+		var elTarget = event.target;
+		var elCell = elTarget.closest('td,th');
+		return elCell;
 	},
 
 	/**
