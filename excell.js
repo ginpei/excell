@@ -226,17 +226,17 @@ Object.assign(Excell.prototype, {
 	 * @param {Event} event
 	 */
 	document_keypress: function(event) {
-		var keyCod = event.keyCode;
-		if (keyCod === Excell.KEY_LEFT) {
+		var keyCode = event.keyCode;
+		if (keyCode === Excell.KEY_LEFT) {
 			this.left();
 		}
-		else if (keyCod === Excell.KEY_UP) {
+		else if (keyCode === Excell.KEY_UP) {
 			this.up();
 		}
-		else if (keyCod === Excell.KEY_RIGHT) {
+		else if (keyCode === Excell.KEY_RIGHT) {
 			this.right();
 		}
-		else if (keyCod === Excell.KEY_DOWN) {
+		else if (keyCode === Excell.KEY_DOWN) {
 			this.down();
 		}
 	},
