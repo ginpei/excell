@@ -400,10 +400,16 @@ Object.assign(Excell.prototype, {
 			this.down(options);
 		}
 		else if (keyCode === Excell.KEY_HOME) {
+			if (options.ctrl) {
+				this.up(options);
+			}
 			options.ctrl = true;
 			this.left(options);
 		}
 		else if (keyCode === Excell.KEY_END) {
+			if (options.ctrl) {
+				this.down(options);
+			}
 			options.ctrl = true;
 			this.right(options);
 		}
