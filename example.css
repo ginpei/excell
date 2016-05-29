@@ -1,0 +1,15 @@
+.table {
+	border-collapse: collapse;
+}
+.table,
+.table th,
+.table td {
+	border: 1px solid #ccc;
+}
+.table th,
+.table td {
+	padding: 4px 8px;
+}
+.excell-input {
+	border: none;
+}
