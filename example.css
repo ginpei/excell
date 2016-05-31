@@ -15,6 +15,10 @@ body {
 .table td {
 	padding: 4px 8px;
 }
+.table th.excell-editing,
+.table td.excell-editing {
+	padding: 0;
+}
 .table th::before,
 .table td::before {
 	content: "";
