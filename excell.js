@@ -8,6 +8,7 @@ function Excell(options) {
 }
 
 Object.assign(Excell, {
+	KEY_TAB: 9,
 	KEY_ENTER: 13,
 	KEY_ESCAPE: 27,
 	KEY_PAGEUP: 33,
@@ -419,6 +420,18 @@ Object.assign(Excell.prototype, {
 			}
 			else if (status == 'editing') {
 				this.finishEditing();
+			}
+		}
+		else if (keyCode === Excell.KEY_TAB) {
+			if (status === 'editing') {
+				this.finishEditing();
+				if (options.shift) {
+					this.left();
+				}
+				else {
+					this.right();
+				}
+				this.edit();
 			}
 		}
 		else if (keyCode === Excell.KEY_ESCAPE) {
