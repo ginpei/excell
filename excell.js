@@ -8,19 +8,6 @@ function Excell(options) {
 }
 
 Object.assign(Excell, {
-	KEY_TAB: 9,
-	KEY_ENTER: 13,
-	KEY_ESCAPE: 27,
-	KEY_PAGEUP: 33,
-	KEY_PAGEDOWN: 34,
-	KEY_END: 35,
-	KEY_HOME: 36,
-	KEY_LEFT: 37,
-	KEY_UP: 38,
-	KEY_RIGHT: 39,
-	KEY_DOWN: 40,
-	KEY_DELETE: 46,
-
 	create: function(options) {
 		var instance = new Excell(options);
 		return instance;
@@ -35,6 +22,21 @@ if (!Object.assign) {
 }
 
 Object.assign(Excell.prototype, {
+	KEY: {
+		tab: 9,
+		enter: 13,
+		escape: 27,
+		pageup: 33,
+		pagedown: 34,
+		end: 35,
+		home: 36,
+		left: 37,
+		up: 38,
+		right: 39,
+		down: 40,
+		delete: 46,
+	},
+
 	/**
 	 * @param {HTMLElement} options.el
 	 */
@@ -379,7 +381,6 @@ Object.assign(Excell.prototype, {
 	 */
 	document_keypress: function(event) {
 		var keyCode = event.keyCode;
-		var status = this.status();
 		var options = {
 			alt: event.altKey,
 			ctrl: event.ctrlKey,
@@ -388,64 +389,131 @@ Object.assign(Excell.prototype, {
 		};
 		var handled = true;
 
-		if (keyCode === Excell.KEY_LEFT) {
-			this.left(options);
+		var KEY = this.KEY;
+		for (var keyName in this.KEY) {
+			if (keyCode === KEY[keyName]) {
+				event.preventDefault();
+				var functionName = 'document_keypress_' + keyName;
+				this[functionName](options);
+				break;
+			}
 		}
-		else if (keyCode === Excell.KEY_UP) {
-			this.up(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_tab: function(options) {
+		if (this.status() === 'editing') {
+			this.finishEditing();
+			if (options.shift) {
+				this.left();
+			}
+			else {
+				this.right();
+			}
+			this.edit();
 		}
-		else if (keyCode === Excell.KEY_RIGHT) {
-			this.right(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_enter: function(options) {
+		var status = this.status();
+		if (status === 'active') {
+			this.edit();
 		}
-		else if (keyCode === Excell.KEY_DOWN) {
+		else if (status == 'editing') {
+			this.finishEditing();
+		}
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_escape: function(options) {
+		this.cancelEditing();
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_pageup: function(options) {
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_pagedown: function(options) {
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_end: function(options) {
+		if (options.ctrl) {
 			this.down(options);
 		}
-		else if (keyCode === Excell.KEY_HOME) {
-			if (options.ctrl) {
-				this.up(options);
-			}
-			options.ctrl = true;
-			this.left(options);
-		}
-		else if (keyCode === Excell.KEY_END) {
-			if (options.ctrl) {
-				this.down(options);
-			}
-			options.ctrl = true;
-			this.right(options);
-		}
-		else if (keyCode === Excell.KEY_ENTER) {
-			if (status === 'active') {
-				this.edit();
-			}
-			else if (status == 'editing') {
-				this.finishEditing();
-			}
-		}
-		else if (keyCode === Excell.KEY_TAB) {
-			if (status === 'editing') {
-				this.finishEditing();
-				if (options.shift) {
-					this.left();
-				}
-				else {
-					this.right();
-				}
-				this.edit();
-			}
-		}
-		else if (keyCode === Excell.KEY_ESCAPE) {
-			this.cancelEditing();
-		}
-		else if (keyCode === Excell.KEY_DELETE) {
-			this.deleteText();
-		}
-		else {
-			handled = false;
-		}
+		options.ctrl = true;
+		this.right(options);
+	},
 
-		if (handled) {
-			event.preventDefault();
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_home: function(options) {
+		if (options.ctrl) {
+			this.up(options);
 		}
+		options.ctrl = true;
+		this.left(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_left: function(options) {
+		this.left(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_up: function(options) {
+		this.up(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_right: function(options) {
+		this.right(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_down: function(options) {
+		this.down(options);
+	},
+
+	/**
+	 * @param {object} options
+	 * @see #document_keypress
+	 */
+	document_keypress_delete: function(options) {
+		this.deleteText();
 	},
 });
