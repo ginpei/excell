@@ -387,14 +387,15 @@ Object.assign(Excell.prototype, {
 			meta: event.metaKey,
 			shift: event.shiftKey,
 		};
-		var handled = true;
 
 		var KEY = this.KEY;
 		for (var keyName in this.KEY) {
 			if (keyCode === KEY[keyName]) {
 				event.preventDefault();
 				var functionName = 'document_keypress_' + keyName;
-				this[functionName](options);
+				if (this[functionName]) {
+					this[functionName](options);
+				}
 				break;
 			}
 		}
@@ -437,20 +438,6 @@ Object.assign(Excell.prototype, {
 	 */
 	document_keypress_escape: function(options) {
 		this.cancelEditing();
-	},
-
-	/**
-	 * @param {object} options
-	 * @see #document_keypress
-	 */
-	document_keypress_pageup: function(options) {
-	},
-
-	/**
-	 * @param {object} options
-	 * @see #document_keypress
-	 */
-	document_keypress_pagedown: function(options) {
 	},
 
 	/**
