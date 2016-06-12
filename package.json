@@ -5,5 +5,21 @@
   "dependencies": {
     "eslint": "^2.12.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "name": "ExCell",
+  "description": "Edit table cells by a keyboard.",
+  "version": "0.0.0-alpha",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ginpei/excell.git"
+  },
+  "keywords": [
+    "table"
+  ],
+  "author": "Ginpei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ginpei/excell/issues"
+  },
+  "homepage": "https://github.com/ginpei/excell#readme"
 }
