@@ -1,7 +1,7 @@
-/* global Excell */
+/* global ExCell */
 (function() {
 	Array.from(document.querySelectorAll('.js-table')).forEach(function(elTable) {
-		Excell.create({
+		ExCell.create({
 			el: elTable,
 		});
 	});

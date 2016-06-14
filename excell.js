@@ -1,15 +1,15 @@
-function Excell(options) {
-	if (this instanceof Excell) {
+function ExCell(options) {
+	if (this instanceof ExCell) {
 		this.initialize(options);
 	}
 	else {
-		return Excell.create(options);
+		return ExCell.create(options);
 	}
 }
 
-Object.assign(Excell, {
+Object.assign(ExCell, {
 	create: function(options) {
-		var instance = new Excell(options);
+		var instance = new ExCell(options);
 		return instance;
 	},
 });
@@ -21,7 +21,7 @@ if (!Object.assign) {
 	};
 }
 
-Object.assign(Excell.prototype, {
+Object.assign(ExCell.prototype, {
 	KEY: {
 		tab: 9,
 		enter: 13,
