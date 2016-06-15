@@ -60,6 +60,12 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
+	 */
+	destroy: function() {
+		// TODO: implement here
+	},
+
+	/**
 	 * @returns {string}
 	 */
 	status: function() {

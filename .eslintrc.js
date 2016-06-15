@@ -10,7 +10,13 @@ module.exports = {
 		"array-callback-return": "error",
 		"arrow-body-style": "error",
 		"arrow-parens": "error",
-		"arrow-spacing": "error",
+		"arrow-spacing": [
+			"error",
+			{
+				"before": false,
+				"after": false
+			}
+		],
 		"block-scoped-var": "error",
 		"block-spacing": "error",
 		"brace-style": [
@@ -110,7 +116,7 @@ module.exports = {
 		"no-implicit-coercion": "error",
 		"no-implicit-globals": "off",
 		"no-implied-eval": "error",
-		"no-inline-comments": "error",
+		"no-inline-comments": "off",
 		"no-inner-declarations": [
 			"error",
 			"functions"
@@ -155,7 +161,7 @@ module.exports = {
 		"no-shadow": "error",
 		"no-shadow-restricted-names": "error",
 		"no-spaced-func": "error",
-		"no-sync": "error",
+		"no-sync": "off",
 		"no-ternary": "error",
 		"no-throw-literal": "error",
 		"no-trailing-spaces": "error",
