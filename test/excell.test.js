@@ -10,6 +10,7 @@ describe('ExCell', ()=>{
 	var ExCell;
 	var excell;
 	var el;
+	var document;
 
 	beforeEach((done)=>{
 		jsdom.env({
@@ -24,6 +25,7 @@ describe('ExCell', ()=>{
 
 				ExCell = window.ExCell;
 				el = window.document.querySelector('table');
+				document = window.document;
 
 				excell = ExCell.create({
 					el: el,
@@ -40,5 +42,51 @@ describe('ExCell', ()=>{
 
 	it('adds a class to a target table', ()=>{
 		expect(el.classList.contains('excell-table')).to.be.true;
+	});
+
+	describe('select(elCell)', ()=>{
+		describe('just calling', ()=>{
+			var elCell;
+
+			beforeEach(()=>{
+				elCell = document.querySelector('#cell-5');
+				excell.select(elCell);
+			});
+
+			it('selects the specified cell', ()=>{
+				expect(elCell.classList.contains('excell-active')).to.be.true;
+			});
+		});
+
+		describe('calling with null', ()=>{
+			var elCell;
+
+			beforeEach(()=>{
+				elCell = document.querySelector('#cell-5');
+				excell.select(elCell);
+				excell.select(null);
+			});
+
+			it('deselects the specified cell', ()=>{
+				expect(elCell.classList.contains('excell-active')).to.be.false;
+			});
+		});
+
+		describe('calling after selecting', ()=>{
+			var elCell1;
+			var elCell2;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+				elCell2 = document.querySelector('#cell-6');
+				excell.select(elCell1);
+				excell.select(elCell2);
+			});
+
+			it('deactivates the last active cell and select the next one', ()=>{
+				expect(elCell1.classList.contains('excell-active')).to.be.false;
+				expect(elCell2.classList.contains('excell-active')).to.be.true;
+			});
+		});
 	});
 });
