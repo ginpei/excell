@@ -89,4 +89,48 @@ describe('ExCell', ()=>{
 			});
 		});
 	});
+
+	describe('edit()', ()=>{
+		it('...');
+	});
+
+	describe('finishEditing()', ()=>{
+		it('...');
+	});
+
+	describe('cancelEditing()', ()=>{
+		it('...');
+	});
+
+	describe('move', ()=>{
+		describe('left()', ()=>{
+			it('...');
+		});
+
+		describe('right()', ()=>{
+			it('...');
+		});
+
+		describe('up()', ()=>{
+			it('...');
+		});
+
+		describe('down()', ()=>{
+			it('...');
+		});
+	});
+
+	describe('setText()', ()=>{
+		it('...');
+	});
+
+	describe('getText()', ()=>{
+		it('...');
+	});
+
+	describe('events', ()=>{
+		describe('...', ()=>{
+			it('...');
+		});
+	});
 });
