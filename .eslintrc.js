@@ -23,7 +23,7 @@ module.exports = {
 			"error",
 			"stroustrup"
 		],
-		"callback-return": "error",
+		"callback-return": "off",
 		"camelcase": [
 			"error",
 			{
@@ -65,10 +65,21 @@ module.exports = {
 		],
 		"generator-star-spacing": "error",
 		"global-require": "error",
-		"guard-for-in": "error",
+		"guard-for-in": "off",
 		"handle-callback-err": "error",
 		"id-blacklist": "error",
-		"id-length": "error",
+		"id-length": [
+			"error",
+			{
+				"exceptions": [
+					"$",
+					"i",
+					"l",
+					"x",
+					"y"
+				],
+			}
+		],
 		"id-match": "error",
 		"indent": [
 			"error",
@@ -111,7 +122,7 @@ module.exports = {
 		"no-extend-native": "error",
 		"no-extra-bind": "error",
 		"no-extra-label": "error",
-		"no-extra-parens": "error",
+		"no-extra-parens": "off",
 		"no-floating-decimal": "error",
 		"no-implicit-coercion": "error",
 		"no-implicit-globals": "off",
@@ -145,7 +156,7 @@ module.exports = {
 		"no-octal-escape": "error",
 		"no-param-reassign": "off",
 		"no-path-concat": "error",
-		"no-plusplus": "error",
+		"no-plusplus": "off",
 		"no-process-env": "error",
 		"no-process-exit": "error",
 		"no-proto": "error",
@@ -162,11 +173,11 @@ module.exports = {
 		"no-shadow-restricted-names": "error",
 		"no-spaced-func": "error",
 		"no-sync": "off",
-		"no-ternary": "error",
+		"no-ternary": "off",
 		"no-throw-literal": "error",
 		"no-trailing-spaces": "error",
 		"no-undef-init": "error",
-		"no-undefined": "error",
+		"no-undefined": "off",
 		"no-underscore-dangle": [
 			"error",
 			{
@@ -197,7 +208,10 @@ module.exports = {
 		"no-whitespace-before-property": "error",
 		"no-with": "error",
 		"object-curly-newline": "off",
-		"object-curly-spacing": "error",
+		"object-curly-spacing": [
+			"error",
+			"always"
+		],
 		"object-property-newline": "error",
 		"object-shorthand": "off",
 		"one-var": "off",
@@ -210,8 +224,8 @@ module.exports = {
 		"padded-blocks": "off",
 		"prefer-arrow-callback": "off",
 		"prefer-const": "error",
-		"prefer-reflect": "error",
-		"prefer-rest-params": "error",
+		"prefer-reflect": "off",
+		"prefer-rest-params": "off",
 		"prefer-spread": "error",
 		"prefer-template": "off",
 		"quote-props": "off",
@@ -239,11 +253,16 @@ module.exports = {
 			"error",
 			"never"
 		],
-		"space-infix-ops": "error",
+		"space-infix-ops": "off",
 		"space-unary-ops": "error",
 		"spaced-comment": [
 			"error",
-			"always"
+			"always",
+			{
+				"exceptions": [
+					"!"
+				]
+			}
 		],
 		"strict": [
 			"error",
