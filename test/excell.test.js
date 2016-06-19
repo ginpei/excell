@@ -250,6 +250,49 @@ describe('ExCell', ()=>{
 		});
 	});
 
+	describe('Delete', ()=>{
+		describe('deleteText()', ()=>{
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
+				excell.select(elCell5);
+
+				excell.deleteText();
+			});
+
+			it('empties a current cell', ()=>{
+				expect(elCell5.textContent).to.empty;
+			});
+		});
+
+		describe('deleteText(elCell)', ()=>{
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
+				elCell6.textContent = 'cell6';
+				excell.select(elCell5);
+
+				excell.deleteText(elCell6);
+			});
+
+			it('empties a specified cell', ()=>{
+				expect(elCell6.textContent).to.empty;
+			});
+
+			it('does not empty a current cell', ()=>{
+				expect(elCell5.textContent).to.equal('cell5');
+			});
+		});
+
+		describe('deleteText() before selecting', ()=>{
+			beforeEach(()=>{
+				excell.deleteText();
+			});
+
+			it('does not throws errors', ()=>{
+				// do nothing
+			});
+		});
+	});
+
 	describe('move', ()=>{
 		describe('left()', ()=>{
 			it('...');
