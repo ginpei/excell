@@ -319,10 +319,15 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
-	 * @param {HTMLElement} elCell
+	 * @param {HTMLElement} [elCell] Default is a current active cell
 	 * @param {string} text
 	 */
 	setText: function(elCell, text) {
+		if (elCell && text === undefined) {
+			text = elCell;
+			elCell = null;
+		}
+
 		if (!elCell) {
 			elCell = this.elActiveCell;
 			if (!elCell) {
@@ -334,7 +339,7 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
-	 * @param {HTMLElement} elCell
+	 * @param {HTMLElement} [elCell] Default is a current active cell
 	 * @returns {string}
 	 */
 	getText: function(elCell) {

@@ -490,6 +490,19 @@ describe('ExCell', ()=>{
 			});
 		});
 
+		describe('setText(text) after selecting', ()=>{
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
+
+				excell.select(elCell5);
+				excell.setText('text');
+			});
+
+			it('updates a current cell', ()=>{
+				expect(elCell5.textContent).to.equal('text');
+			});
+		});
+
 		describe('getText(elCell)', ()=>{
 			var result;
 
