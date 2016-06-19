@@ -454,12 +454,80 @@ describe('ExCell', ()=>{
 		});
 	});
 
-	describe('setText()', ()=>{
-		it('...');
-	});
+	describe('Text', ()=>{
+		describe('setText(elCell, text)', ()=>{
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
 
-	describe('getText()', ()=>{
-		it('...');
+				excell.setText(elCell5, 'text');
+			});
+
+			it('updates the specified cell', ()=>{
+				expect(elCell5.textContent).to.equal('text');
+			});
+		});
+
+		describe('setText(null, text) after selecting', ()=>{
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
+
+				excell.select(elCell5);
+				excell.setText(null, 'text');
+			});
+
+			it('updates a current cell', ()=>{
+				expect(elCell5.textContent).to.equal('text');
+			});
+		});
+
+		describe('setText(null, text) before selecting', ()=>{
+			beforeEach(()=>{
+				excell.setText(null, 'text');
+			});
+
+			it('does not throw errors', ()=>{
+				// do nothing
+			});
+		});
+
+		describe('getText(elCell)', ()=>{
+			var result;
+
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
+				result = excell.getText(elCell5);
+			});
+
+			it('returns a text which the specified element contains', ()=>{
+				expect(result).to.equal('cell5');
+			});
+		});
+
+		describe('getText() after selecting', ()=>{
+			var result;
+
+			beforeEach(()=>{
+				elCell5.textContent = 'cell5';
+				excell.select(elCell5);
+				result = excell.getText();
+			});
+
+			it('returns a text which a current element contains', ()=>{
+				expect(result).to.equal('cell5');
+			});
+		});
+
+		describe('getText() before selecting', ()=>{
+			var result;
+
+			beforeEach(()=>{
+				result = excell.getText();
+			});
+
+			it('does not throw errors', ()=>{
+				// do nothing
+			});
+		});
 	});
 
 	describe('events', ()=>{
