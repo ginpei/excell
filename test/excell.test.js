@@ -34,7 +34,7 @@ describe('ExCell', ()=>{
 
 				ExCell = window.ExCell;
 				document = window.document;
-				elTablel = window.document.querySelector('table');
+				elTablel = document.querySelector('#table');
 				elCell1 = document.querySelector('#cell-1');
 				elCell2 = document.querySelector('#cell-2');
 				elCell3 = document.querySelector('#cell-3');
