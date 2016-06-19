@@ -312,8 +312,16 @@ describe('ExCell', ()=>{
 				excell.left(options);
 			});
 
-			it('moves a current cell to the left side one', ()=>{
+			it('captures the left side cell', ()=>{
 				expect(excell.elActiveCell).to.equal(elCell4);
+			});
+
+			it('removes a class name from the latest cell', ()=>{
+				expect(elCell5.classList.contains('excell-active')).to.false;
+			});
+
+			it('adds a class name to the next cell', ()=>{
+				expect(elCell4.classList.contains('excell-active')).to.true;
 			});
 		});
 
