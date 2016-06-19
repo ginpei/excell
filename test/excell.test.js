@@ -312,7 +312,7 @@ describe('ExCell', ()=>{
 				excell.left(options);
 			});
 
-			it('moves a current cell to the left end one', ()=>{
+			it('moves a current cell to the left side one', ()=>{
 				expect(excell.elActiveCell).to.equal(elCell4);
 			});
 		});
@@ -324,7 +324,7 @@ describe('ExCell', ()=>{
 				excell.left(options);
 			});
 
-			it('leaves a current cell to the left end one', ()=>{
+			it('leaves a current cell', ()=>{
 				expect(excell.elActiveCell).to.equal(elCell4);
 			});
 		});
@@ -349,7 +349,7 @@ describe('ExCell', ()=>{
 				excell.right(options);
 			});
 
-			it('moves a current cell to the right end one', ()=>{
+			it('moves a current cell to the right side one', ()=>{
 				expect(excell.elActiveCell).to.equal(elCell6);
 			});
 		});
@@ -361,7 +361,7 @@ describe('ExCell', ()=>{
 				excell.right(options);
 			});
 
-			it('leaves a current cell to the right end one', ()=>{
+			it('leaves a current cell', ()=>{
 				expect(excell.elActiveCell).to.equal(elCell6);
 			});
 		});
