@@ -90,8 +90,40 @@ describe('ExCell', ()=>{
 		});
 	});
 
-	describe('edit()', ()=>{
-		it('...');
+	describe('Edit', ()=>{
+		describe('edit(elCell)', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+				elCell1.textContent = 'edit123';
+
+				excell.edit(elCell1);
+			});
+
+			it('captures the cell element', ()=>{
+				expect(excell.elEditingCell).to.equal(elCell1);
+			});
+
+			it('replaces its content', ()=>{
+				expect(excell.elEditingCell.childNodes.length).to.equal(1);
+			});
+
+			it('puts one input with its text content', ()=>{
+				var elInput = excell.elEditingCell.firstChild;
+				expect(elInput.tagName.toLowerCase()).to.equal('input');
+				expect(elInput.value).to.equal('edit123');
+			});
+
+			it('captures the input element', ()=>{
+				var elInput = excell.elEditingCell.firstChild;
+				expect(excell.elInput).to.equal(elInput);
+			});
+
+			it('sets a class', ()=>{
+				expect(elCell1.classList.contains('excell-editing')).to.be.true;
+			});
+		});
 	});
 
 	describe('finishEditing()', ()=>{
