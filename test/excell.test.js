@@ -10,6 +10,15 @@ describe('ExCell', ()=>{
 	var ExCell;
 	var excell;
 	var elTable;
+	var elCell1;
+	var elCell2;
+	var elCell3;
+	var elCell4;
+	var elCell5;
+	var elCell6;
+	var elCell7;
+	var elCell8;
+	var elCell9;
 	var document;
 
 	beforeEach((done)=>{
@@ -24,8 +33,17 @@ describe('ExCell', ()=>{
 				}
 
 				ExCell = window.ExCell;
-				elTablel = window.document.querySelector('table');
 				document = window.document;
+				elTablel = window.document.querySelector('table');
+				elCell1 = document.querySelector('#cell-1');
+				elCell2 = document.querySelector('#cell-2');
+				elCell3 = document.querySelector('#cell-3');
+				elCell4 = document.querySelector('#cell-4');
+				elCell5 = document.querySelector('#cell-5');
+				elCell6 = document.querySelector('#cell-6');
+				elCell7 = document.querySelector('#cell-7');
+				elCell8 = document.querySelector('#cell-8');
+				elCell9 = document.querySelector('#cell-9');
 
 				excell = ExCell.create({
 					el: elTablel,
@@ -46,63 +64,49 @@ describe('ExCell', ()=>{
 
 	describe('select(elCell)', ()=>{
 		describe('just calling', ()=>{
-			var elCell;
-
 			beforeEach(()=>{
-				elCell = document.querySelector('#cell-5');
-				excell.select(elCell);
+				excell.select(elCell5);
 			});
 
 			it('selects the specified cell', ()=>{
-				expect(elCell.classList.contains('excell-active')).to.be.true;
+				expect(elCell5.classList.contains('excell-active')).to.be.true;
 			});
 		});
 
 		describe('calling with null', ()=>{
-			var elCell;
-
 			beforeEach(()=>{
-				elCell = document.querySelector('#cell-5');
-				excell.select(elCell);
+				excell.select(elCell5);
 				excell.select(null);
 			});
 
 			it('deselects the specified cell', ()=>{
-				expect(elCell.classList.contains('excell-active')).to.be.false;
+				expect(elCell5.classList.contains('excell-active')).to.be.false;
 			});
 		});
 
 		describe('calling after selecting', ()=>{
-			var elCell1;
-			var elCell2;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-				elCell2 = document.querySelector('#cell-6');
-				excell.select(elCell1);
-				excell.select(elCell2);
+				excell.select(elCell5);
+				excell.select(elCell6);
 			});
 
 			it('deactivates the last active cell and select the next one', ()=>{
-				expect(elCell1.classList.contains('excell-active')).to.be.false;
-				expect(elCell2.classList.contains('excell-active')).to.be.true;
+				expect(elCell5.classList.contains('excell-active')).to.be.false;
+				expect(elCell6.classList.contains('excell-active')).to.be.true;
 			});
 		});
 	});
 
 	describe('Edit', ()=>{
 		describe('edit(elCell)', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-				elCell1.textContent = 'edit123';
+				elCell5.textContent = 'edit123';
 
-				excell.edit(elCell1);
+				excell.edit(elCell5);
 			});
 
 			it('captures the cell element', ()=>{
-				expect(excell.elEditingCell).to.equal(elCell1);
+				expect(excell.elEditingCell).to.equal(elCell5);
 			});
 
 			it('replaces its content', ()=>{
@@ -121,22 +125,18 @@ describe('ExCell', ()=>{
 			});
 
 			it('sets a class', ()=>{
-				expect(elCell1.classList.contains('excell-editing')).to.be.true;
+				expect(elCell5.classList.contains('excell-editing')).to.be.true;
 			});
 		});
 
 		describe('edit() with an active cell', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-
-				excell.select(elCell1);
+				excell.select(elCell5);
 				excell.edit();
 			});
 
 			it('captures the cell element', ()=>{
-				expect(excell.elEditingCell).to.equal(elCell1);
+				expect(excell.elEditingCell).to.equal(elCell5);
 			});
 		});
 
@@ -156,15 +156,12 @@ describe('ExCell', ()=>{
 		});
 
 		describe('creating an input element', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-				elCell1.textContent = 'edit123';
-				elCell1.clientWidth = 123;
-				elCell1.clientHeight = 124;
+				elCell5.textContent = 'edit123';
+				elCell5.clientWidth = 123;
+				elCell5.clientHeight = 124;
 
-				excell.edit(elCell1);
+				excell.edit(elCell5);
 			});
 
 			it('sets a class name', ()=>{
@@ -186,28 +183,25 @@ describe('ExCell', ()=>{
 		});
 
 		describe('finishEditing()', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-				elCell1.textContent = 'edit123';
+				elCell5.textContent = 'edit123';
 
-				excell.edit(elCell1);
+				excell.edit(elCell5);
 				excell.elInput.value = 'edited!';
 				excell.finishEditing();
 			});
 
 			it('replaces an input element with the result text', ()=>{
-				expect(elCell1.childNodes.length).to.equal(1);
-				expect(elCell1.firstChild.nodeType).to.equal(elCell1.TEXT_NODE);
+				expect(elCell5.childNodes.length).to.equal(1);
+				expect(elCell5.firstChild.nodeType).to.equal(elCell5.TEXT_NODE);
 			});
 
 			it('is given the input text', ()=>{
-				expect(elCell1.firstChild.nodeValue).to.equal('edited!');
+				expect(elCell5.firstChild.nodeValue).to.equal('edited!');
 			});
 
 			it('removes a class name', ()=>{
-				expect(elCell1.classList.contains('excell-editing')).to.false;
+				expect(elCell5.classList.contains('excell-editing')).to.false;
 			});
 
 			it('clears a captured cell element', ()=>{
@@ -220,11 +214,8 @@ describe('ExCell', ()=>{
 		});
 
 		describe('finishEditing() before editing', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-				elCell1.textContent = 'edit123';
+				elCell5.textContent = 'edit123';
 
 				excell.finishEditing();
 			});
@@ -235,25 +226,20 @@ describe('ExCell', ()=>{
 		});
 
 		describe('cancelEditing()', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-				elCell1.textContent = 'edit123';
+				elCell5.textContent = 'edit123';
 
-				excell.edit(elCell1);
+				excell.edit(elCell5);
 				excell.elInput.value = 'edited!';
 				excell.cancelEditing();
 			});
 
 			it('restores the original text', ()=>{
-				expect(elCell1.firstChild.nodeValue).to.equal('edit123');
+				expect(elCell5.firstChild.nodeValue).to.equal('edit123');
 			});
 		});
 
 		describe('cancelEditing() before editing', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
 				excell.cancelEditing();
 			});
