@@ -34,7 +34,7 @@ describe('ExCell', ()=>{
 
 				ExCell = window.ExCell;
 				document = window.document;
-				elTablel = document.querySelector('#table');
+				elTable = document.querySelector('#table');
 				elCell1 = document.querySelector('#cell-1');
 				elCell2 = document.querySelector('#cell-2');
 				elCell3 = document.querySelector('#cell-3');
@@ -46,7 +46,7 @@ describe('ExCell', ()=>{
 				elCell9 = document.querySelector('#cell-9');
 
 				excell = ExCell.create({
-					el: elTablel,
+					el: elTable,
 				});
 
 				done();
@@ -59,7 +59,7 @@ describe('ExCell', ()=>{
 	});
 
 	it('adds a class to a target table', ()=>{
-		expect(elTablel.classList.contains('excell-table')).to.be.true;
+		expect(elTable.classList.contains('excell-table')).to.be.true;
 	});
 
 	describe('select(elCell)', ()=>{
