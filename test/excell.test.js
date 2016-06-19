@@ -154,6 +154,36 @@ describe('ExCell', ()=>{
 				expect(excell.elInput).to.equal(undefined);
 			});
 		});
+
+		describe('creating an input element', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+				elCell1.textContent = 'edit123';
+				elCell1.clientWidth = 123;
+				elCell1.clientHeight = 124;
+
+				excell.edit(elCell1);
+			});
+
+			it('sets a class name', ()=>{
+				expect(excell.elInput.classList.contains('excell-input')).to.be.true;
+			});
+
+			it('copies text of the cell', ()=>{
+				expect(excell.elInput.value).to.equal('edit123');
+			});
+
+			it('contains original text of the cell', ()=>{
+				expect(excell.elInput.originalValue).to.equal('edit123');
+			});
+
+			it('copies size of the cell', ()=>{
+				expect(excell.elInput.style.width).to.equal('123px');
+				expect(excell.elInput.style.height).to.equal('124px');
+			});
+		});
 	});
 
 	describe('finishEditing()', ()=>{
