@@ -184,10 +184,40 @@ describe('ExCell', ()=>{
 				expect(excell.elInput.style.height).to.equal('124px');
 			});
 		});
-	});
 
-	describe('finishEditing()', ()=>{
-		it('...');
+		describe('finishEditing()', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+				elCell1.textContent = 'edit123';
+
+				excell.edit(elCell1);
+				excell.elInput.value = 'edited!';
+				excell.finishEditing();
+			});
+
+			it('replaces an input element with the result text', ()=>{
+				expect(elCell1.childNodes.length).to.equal(1);
+				expect(elCell1.firstChild.nodeType).to.equal(elCell1.TEXT_NODE);
+			});
+
+			it('is given the input text', ()=>{
+				expect(elCell1.firstChild.nodeValue).to.equal('edited!');
+			});
+
+			it('removes a class name', ()=>{
+				expect(elCell1.classList.contains('excell-editing')).to.false;
+			});
+
+			it('clears a captured cell element', ()=>{
+				expect(excell.elEditingCell).to.equal(null);
+			});
+
+			it('clears a captured input element', ()=>{
+				expect(excell.elInput).to.equal(null);
+			});
+		});
 	});
 
 	describe('cancelEditing()', ()=>{
