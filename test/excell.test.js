@@ -10,15 +10,15 @@ describe('ExCell', ()=>{
 	var ExCell;
 	var excell;
 	var elTable;
-	var elCell1;
-	var elCell2;
-	var elCell3;
-	var elCell4;
+	// var elCell1;
+	// var elCell2;
+	// var elCell3;
+	// var elCell4;
 	var elCell5;
 	var elCell6;
-	var elCell7;
-	var elCell8;
-	var elCell9;
+	// var elCell7;
+	// var elCell8;
+	// var elCell9;
 	var document;
 
 	beforeEach((done)=>{
@@ -35,15 +35,15 @@ describe('ExCell', ()=>{
 				ExCell = window.ExCell;
 				document = window.document;
 				elTable = document.querySelector('#table');
-				elCell1 = document.querySelector('#cell-1');
-				elCell2 = document.querySelector('#cell-2');
-				elCell3 = document.querySelector('#cell-3');
-				elCell4 = document.querySelector('#cell-4');
+				// elCell1 = document.querySelector('#cell-1');
+				// elCell2 = document.querySelector('#cell-2');
+				// elCell3 = document.querySelector('#cell-3');
+				// elCell4 = document.querySelector('#cell-4');
 				elCell5 = document.querySelector('#cell-5');
 				elCell6 = document.querySelector('#cell-6');
-				elCell7 = document.querySelector('#cell-7');
-				elCell8 = document.querySelector('#cell-8');
-				elCell9 = document.querySelector('#cell-9');
+				// elCell7 = document.querySelector('#cell-7');
+				// elCell8 = document.querySelector('#cell-8');
+				// elCell9 = document.querySelector('#cell-9');
 
 				excell = ExCell.create({
 					el: elTable,
