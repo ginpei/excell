@@ -141,11 +141,7 @@ describe('ExCell', ()=>{
 		});
 
 		describe('edit() with any active cells', ()=>{
-			var elCell1;
-
 			beforeEach(()=>{
-				elCell1 = document.querySelector('#cell-5');
-
 				excell.select(null);
 				excell.edit();
 			});
