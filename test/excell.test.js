@@ -233,10 +233,35 @@ describe('ExCell', ()=>{
 				// no errors
 			});
 		});
-	});
 
-	describe('cancelEditing()', ()=>{
-		it('...');
+		describe('cancelEditing()', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+				elCell1.textContent = 'edit123';
+
+				excell.edit(elCell1);
+				excell.elInput.value = 'edited!';
+				excell.cancelEditing();
+			});
+
+			it('restores the original text', ()=>{
+				expect(elCell1.firstChild.nodeValue).to.equal('edit123');
+			});
+		});
+
+		describe('cancelEditing() without an editing cell', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				excell.cancelEditing();
+			});
+
+			it('does not throw any errors', ()=>{
+				// no errors
+			});
+		});
 	});
 
 	describe('move', ()=>{
