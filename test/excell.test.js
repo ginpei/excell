@@ -13,7 +13,7 @@ describe('ExCell', ()=>{
 	// var elCell1;
 	// var elCell2;
 	// var elCell3;
-	// var elCell4;
+	var elCell4;
 	var elCell5;
 	var elCell6;
 	// var elCell7;
@@ -38,7 +38,7 @@ describe('ExCell', ()=>{
 				// elCell1 = document.querySelector('#cell-1');
 				// elCell2 = document.querySelector('#cell-2');
 				// elCell3 = document.querySelector('#cell-3');
-				// elCell4 = document.querySelector('#cell-4');
+				elCell4 = document.querySelector('#cell-4');
 				elCell5 = document.querySelector('#cell-5');
 				elCell6 = document.querySelector('#cell-6');
 				// elCell7 = document.querySelector('#cell-7');
@@ -293,13 +293,90 @@ describe('ExCell', ()=>{
 		});
 	});
 
-	describe('move', ()=>{
-		describe('left()', ()=>{
-			it('...');
+	describe('Move', ()=>{
+		var options;
+
+		beforeEach(()=>{
+			options = {
+				alt: false,
+				ctrl: false,
+				meta: false,
+				shift: false,
+			};
 		});
 
-		describe('right()', ()=>{
-			it('...');
+		describe('left(options)', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell5);
+
+				excell.left(options);
+			});
+
+			it('moves a current cell to the left end one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell4);
+			});
+		});
+
+		describe('left(options) at the left end cell', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell4);
+
+				excell.left(options);
+			});
+
+			it('leaves a current cell to the left end one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell4);
+			});
+		});
+
+		describe('left(options) with a ctrl key', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell6);
+
+				options.ctrl = true;
+				excell.left(options);
+			});
+
+			it('moves a current cell to the left end one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell4);
+			});
+		});
+
+		describe('right(options)', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell5);
+
+				excell.right(options);
+			});
+
+			it('moves a current cell to the right end one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell6);
+			});
+		});
+
+		describe('right(options) at the right end cell', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell6);
+
+				excell.right(options);
+			});
+
+			it('leaves a current cell to the right end one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell6);
+			});
+		});
+
+		describe('right(options) with a ctrl key', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell4);
+
+				options.ctrl = true;
+				excell.right(options);
+			});
+
+			it('moves a current cell to the right end one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell6);
+			});
 		});
 
 		describe('up()', ()=>{
