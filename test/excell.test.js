@@ -9,7 +9,7 @@ var jsdom = require('jsdom');
 describe('ExCell', ()=>{
 	var ExCell;
 	var excell;
-	var el;
+	var elTable;
 	var document;
 
 	beforeEach((done)=>{
@@ -24,11 +24,11 @@ describe('ExCell', ()=>{
 				}
 
 				ExCell = window.ExCell;
-				el = window.document.querySelector('table');
+				elTablel = window.document.querySelector('table');
 				document = window.document;
 
 				excell = ExCell.create({
-					el: el,
+					el: elTablel,
 				});
 
 				done();
@@ -41,7 +41,7 @@ describe('ExCell', ()=>{
 	});
 
 	it('adds a class to a target table', ()=>{
-		expect(el.classList.contains('excell-table')).to.be.true;
+		expect(elTablel.classList.contains('excell-table')).to.be.true;
 	});
 
 	describe('select(elCell)', ()=>{
