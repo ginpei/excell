@@ -219,7 +219,7 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('finishEditing() without an editing cell', ()=>{
+		describe('finishEditing() before editing', ()=>{
 			var elCell1;
 
 			beforeEach(()=>{
@@ -251,7 +251,7 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('cancelEditing() without an editing cell', ()=>{
+		describe('cancelEditing() before editing', ()=>{
 			var elCell1;
 
 			beforeEach(()=>{
