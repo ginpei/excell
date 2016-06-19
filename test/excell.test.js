@@ -11,13 +11,13 @@ describe('ExCell', ()=>{
 	var excell;
 	var elTable;
 	// var elCell1;
-	// var elCell2;
+	var elCell2;
 	// var elCell3;
 	var elCell4;
 	var elCell5;
 	var elCell6;
 	// var elCell7;
-	// var elCell8;
+	var elCell8;
 	// var elCell9;
 	var document;
 
@@ -36,13 +36,13 @@ describe('ExCell', ()=>{
 				document = window.document;
 				elTable = document.querySelector('#table');
 				// elCell1 = document.querySelector('#cell-1');
-				// elCell2 = document.querySelector('#cell-2');
+				elCell2 = document.querySelector('#cell-2');
 				// elCell3 = document.querySelector('#cell-3');
 				elCell4 = document.querySelector('#cell-4');
 				elCell5 = document.querySelector('#cell-5');
 				elCell6 = document.querySelector('#cell-6');
 				// elCell7 = document.querySelector('#cell-7');
-				// elCell8 = document.querySelector('#cell-8');
+				elCell8 = document.querySelector('#cell-8');
 				// elCell9 = document.querySelector('#cell-9');
 
 				excell = ExCell.create({
@@ -379,12 +379,78 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('up()', ()=>{
-			it('...');
+		describe('up(options)', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell5);
+
+				excell.up(options);
+			});
+
+			it('moves a current cell to the above one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell2);
+			});
 		});
 
-		describe('down()', ()=>{
-			it('...');
+		describe('up(options) at the up end cell', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell2);
+
+				excell.up(options);
+			});
+
+			it('leaves a current cell', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell2);
+			});
+		});
+
+		describe('up(options) with a ctrl key', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell8);
+
+				options.ctrl = true;
+				excell.up(options);
+			});
+
+			it('moves a current cell to the top one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell2);
+			});
+		});
+
+		describe('down(options)', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell5);
+
+				excell.down(options);
+			});
+
+			it('moves a current cell to the under one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell8);
+			});
+		});
+
+		describe('down(options) at the down end cell', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell8);
+
+				excell.down(options);
+			});
+
+			it('leaves a current cell', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell8);
+			});
+		});
+
+		describe('down(options) with a ctrl key', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell2);
+
+				options.ctrl = true;
+				excell.down(options);
+			});
+
+			it('moves a current cell to the bottom one', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell8);
+			});
 		});
 	});
 
