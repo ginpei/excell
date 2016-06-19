@@ -124,6 +124,40 @@ describe('ExCell', ()=>{
 				expect(elCell1.classList.contains('excell-editing')).to.be.true;
 			});
 		});
+
+		describe('edit() with an active cell', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+
+				excell.select(elCell1);
+				excell.edit();
+			});
+
+			it('captures the cell element', ()=>{
+				expect(excell.elEditingCell).to.equal(elCell1);
+			});
+		});
+
+		describe('edit() with any active cells', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+
+				excell.select(null);
+				excell.edit();
+			});
+
+			it('does not capture any cells', ()=>{
+				expect(excell.elEditingCell).to.equal(undefined);
+			});
+
+			it('does not create an input element', ()=>{
+				expect(excell.elInput).to.equal(undefined);
+			});
+		});
 	});
 
 	describe('finishEditing()', ()=>{
