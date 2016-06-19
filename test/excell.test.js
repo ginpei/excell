@@ -524,8 +524,8 @@ describe('ExCell', ()=>{
 				result = excell.getText();
 			});
 
-			it('does not throw errors', ()=>{
-				// do nothing
+			it('returns undefined', ()=>{
+				expect(result).to.equal(undefined);
 			});
 		});
 	});
