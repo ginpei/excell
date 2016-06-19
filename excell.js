@@ -179,6 +179,7 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
+	 * @param {HTMLElement} [elCell] Default is a current active cell.
 	 */
 	deleteText: function(elCell) {
 		if (!elCell) {
