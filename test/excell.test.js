@@ -218,6 +218,21 @@ describe('ExCell', ()=>{
 				expect(excell.elInput).to.equal(null);
 			});
 		});
+
+		describe('finishEditing() without an editing cell', ()=>{
+			var elCell1;
+
+			beforeEach(()=>{
+				elCell1 = document.querySelector('#cell-5');
+				elCell1.textContent = 'edit123';
+
+				excell.finishEditing();
+			});
+
+			it('does not throw any errors', ()=>{
+				// no errors
+			});
+		});
 	});
 
 	describe('cancelEditing()', ()=>{

@@ -153,10 +153,15 @@ Object.assign(ExCell.prototype, {
 		var elCell = this.elEditingCell;
 		var elInput = this.elInput;
 
-		elInput.removeEventListener('blur', this._listener_input_blue);
+		if (elCell) {
+			elCell.classList.remove('excell-editing');
+		}
 
-		this.setText(elCell, elInput.value);
-		elCell.classList.remove('excell-editing');
+		if (elInput) {
+			elInput.removeEventListener('blur', this._listener_input_blue);
+
+			this.setText(elCell, elInput.value);
+		}
 
 		this.elEditingCell = null;
 		this.elInput = null;
