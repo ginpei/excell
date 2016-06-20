@@ -385,6 +385,7 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
+	 * May be called just after `el_click`.
 	 * @param {Event} event
 	 */
 	document_click: function(event) {
