@@ -58,12 +58,14 @@ describe('ExCell', ()=>{
 		excell.destroy();
 	});
 
-	it('adds a class to a target table', ()=>{
-		expect(elTable.classList.contains('excell-table')).to.be.true;
+	describe('Constructor', ()=>{
+		it('adds a class to a target table', ()=>{
+			expect(elTable.classList.contains('excell-table')).to.be.true;
+		});
 	});
 
-	describe('select(elCell)', ()=>{
-		describe('just calling', ()=>{
+	describe('Select', ()=>{
+		describe('select(elCell)', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 			});
@@ -73,7 +75,7 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('calling with null', ()=>{
+		describe('select(null)', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 				excell.select(null);
@@ -84,7 +86,7 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('calling after selecting', ()=>{
+		describe('select(elCell) after selecting', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 				excell.select(elCell6);
