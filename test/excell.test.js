@@ -25,7 +25,7 @@ describe('ExCell', ()=>{
 		jsdom.env({
 			html: fs.readFileSync('test/excell.test.html', 'utf-8'),
 			src: [
-				fs.readFileSync('./excell.js', 'utf-8'),
+				fs.readFileSync('src/excell.js', 'utf-8'),
 			],
 			done: (err, window)=>{
 				if (err) {

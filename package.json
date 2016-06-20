@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "eslint *.js **/*.js",
+    "lint": "eslint src/*.js test/*.js",
     "test": "npm run lint; mocha"
   },
   "dependencies": {},
