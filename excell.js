@@ -37,10 +37,20 @@ Object.assign(ExCell.prototype, {
 		delete: 46,
 	},
 
+	_defaultOptions: {
+		getText: function(elCell) {
+			return elCell.textContent;
+		},
+		setText: function(elCell, text) {
+			elCell.textContent = text;
+		},
+	},
+
 	/**
 	 * @param {HTMLElement} options.el
 	 */
 	initialize: function(options) {
+		this.options = Object.assign({}, this._defaultOptions, options);
 		this.el = options.el;
 
 		this.el.classList.add('excell-table');
@@ -325,7 +335,7 @@ Object.assign(ExCell.prototype, {
 			}
 		}
 
-		elCell.textContent = text;
+		this.options.setText.call(this, elCell, text);
 	},
 
 	/**
@@ -340,7 +350,8 @@ Object.assign(ExCell.prototype, {
 			}
 		}
 
-		return elCell.textContent;
+		var text = this.options.getText.call(this, elCell);
+		return text;
 	},
 
 	/**

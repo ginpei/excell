@@ -62,6 +62,43 @@ describe('ExCell', ()=>{
 		it('adds a class to a target table', ()=>{
 			expect(elTable.classList.contains('excell-table')).to.be.true;
 		});
+
+		describe('options.getText', ()=>{
+			var result;
+
+			beforeEach(()=>{
+				excell = ExCell.create({
+					el: elTable,
+					getText: function(elCell) {
+						return elCell.textContent.toUpperCase();
+					},
+				});
+
+				elCell5.textContent = 'cell5';
+				result = excell.getText(elCell5);
+			});
+
+			it('is used', ()=>{
+				expect(result).to.equal('CELL5');
+			});
+		});
+
+		describe('options.setText', ()=>{
+			beforeEach(()=>{
+				excell = ExCell.create({
+					el: elTable,
+					setText: function(elCell, text) {
+						elCell.textContent = text.toUpperCase();
+					},
+				});
+
+				excell.setText(elCell5, 'cell5');
+			});
+
+			it('is used', ()=>{
+				expect(elCell5.textContent).to.equal('CELL5');
+			});
+		});
 	});
 
 	describe('Select', ()=>{
