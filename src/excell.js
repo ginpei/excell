@@ -93,7 +93,7 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
-	 * @param {HTMLElement} elCell
+	 * @param {HTMLElement} [elCell]
 	 */
 	select: function(elCell) {
 		if (this.elActiveCell) {
@@ -108,7 +108,7 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
-	 * @param {HTMLElement} elCell
+	 * @param {HTMLElement} [elCell]
 	 */
 	edit: function(elCell) {
 		if (!elCell) {
