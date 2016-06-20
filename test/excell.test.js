@@ -294,17 +294,6 @@ describe('ExCell', ()=>{
 	});
 
 	describe('Move', ()=>{
-		var options;
-
-		beforeEach(()=>{
-			options = {
-				alt: false,
-				ctrl: false,
-				meta: false,
-				shift: false,
-			};
-		});
-
 		describe('left()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
