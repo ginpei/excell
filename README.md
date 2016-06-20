@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ginpei/excell.svg?branch=master)](https://travis-ci.org/ginpei/excell)
+
 # ExCell
 
 Edit table cells.
