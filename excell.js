@@ -453,10 +453,9 @@ Object.assign(ExCell.prototype, {
 	 */
 	document_keypress_end: function(options) {
 		if (options.ctrl) {
-			this.down(options);
+			this.bottom();
 		}
-		options.ctrl = true;
-		this.right(options);
+		this.rightEnd();
 	},
 
 	/**
@@ -465,10 +464,9 @@ Object.assign(ExCell.prototype, {
 	 */
 	document_keypress_home: function(options) {
 		if (options.ctrl) {
-			this.up(options);
+			this.top();
 		}
-		options.ctrl = true;
-		this.left(options);
+		this.leftEnd();
 	},
 
 	/**
@@ -490,10 +488,10 @@ Object.assign(ExCell.prototype, {
 	 */
 	document_keypress_up: function(options) {
 		if (options.ctrl) {
-			this.up();
+			this.top();
 		}
 		else {
-			this.top();
+			this.up();
 		}
 	},
 
@@ -516,10 +514,10 @@ Object.assign(ExCell.prototype, {
 	 */
 	document_keypress_down: function(options) {
 		if (options.ctrl) {
-			this.down();
+			this.bottom();
 		}
 		else {
-			this.bottom();
+			this.down();
 		}
 	},
 
