@@ -194,44 +194,38 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
-	 * @param {boolean} options.alt
-	 * @param {boolean} options.ctrl
-	 * @param {boolean} options.meta
-	 * @param {boolean} options.shift
 	 */
-	left: function(options) {
-		if (this.status() === 'active') {
-			this._moveHorizontally(-1, options);
-		}
+	left: function() {
+		this._moveHorizontally(-1);
+	},
+
+	leftEnd: function() {
+		this._moveHorizontally(-Infinity);
 	},
 
 	/**
-	 * @param {boolean} options.alt
-	 * @param {boolean} options.ctrl
-	 * @param {boolean} options.meta
-	 * @param {boolean} options.shift
 	 */
-	right: function(options) {
-		if (this.status() === 'active') {
-			this._moveHorizontally(+1, options);
-		}
+	right: function() {
+		this._moveHorizontally(+1);
 	},
 
 	/**
-	 * @param {number} direction
-	 * @param {boolean} options.alt
-	 * @param {boolean} options.ctrl
-	 * @param {boolean} options.meta
-	 * @param {boolean} options.shift
 	 */
-	_moveHorizontally: function(direction, options) {
-		var elCur = this.elActiveCell;
-		if (!elCur) {
+	rightEnd: function() {
+		this._moveHorizontally(+Infinity);
+	},
+
+	/**
+	 * @param {number} direction `1`, `-1`, `Infinity` or `-Infinity`.
+	 */
+	_moveHorizontally: function(direction) {
+		if (this.status() !== 'active') {
 			return;
 		}
 
-		if (options && options.ctrl) {
-			direction *= Infinity;
+		var elCur = this.elActiveCell;
+		if (!elCur) {
+			return;
 		}
 
 		var index;
@@ -254,44 +248,40 @@ Object.assign(ExCell.prototype, {
 	},
 
 	/**
-	 * @param {boolean} options.alt
-	 * @param {boolean} options.ctrl
-	 * @param {boolean} options.meta
-	 * @param {boolean} options.shift
 	 */
-	up: function(options) {
-		if (this.status() === 'active') {
-			this._moveVertically(-1, options);
-		}
+	up: function() {
+		this._moveVertically(-1);
 	},
 
 	/**
-	 * @param {boolean} options.alt
-	 * @param {boolean} options.ctrl
-	 * @param {boolean} options.meta
-	 * @param {boolean} options.shift
+	 */
+	top: function() {
+		this._moveVertically(-Infinity);
+	},
+
+	/**
 	 */
 	down: function(options) {
-		if (this.status() === 'active') {
-			this._moveVertically(+1, options);
-		}
+		this._moveVertically(+1);
+	},
+
+	/**
+	 */
+	bottom: function(options) {
+		this._moveVertically(+Infinity);
 	},
 
 	/**
 	 * @param {number} direction
-	 * @param {boolean} options.alt
-	 * @paran {boolean} options.ctrl
-	 * @param {boolean} options.meta
-	 * @param {boolean} options.shift
 	 */
-	_moveVertically: function(direction, options) {
-		var elCur = this.elActiveCell;
-		if (!elCur) {
+	_moveVertically: function(direction) {
+		if (this.status() !== 'active') {
 			return;
 		}
 
-		if (options && options.ctrl) {
-			direction *= Infinity;
+		var elCur = this.elActiveCell;
+		if (!elCur) {
+			return;
 		}
 
 		var vIndex;
@@ -486,7 +476,12 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_left: function(options) {
-		this.left(options);
+		if (options.ctrl) {
+			this.leftEnd();
+		}
+		else {
+			this.left();
+		}
 	},
 
 	/**
@@ -494,7 +489,12 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_up: function(options) {
-		this.up(options);
+		if (options.ctrl) {
+			this.up();
+		}
+		else {
+			this.top();
+		}
 	},
 
 	/**
@@ -502,7 +502,12 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_right: function(options) {
-		this.right(options);
+		if (options.ctrl) {
+			this.rightEnd();
+		}
+		else {
+			this.right();
+		}
 	},
 
 	/**
@@ -510,7 +515,12 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_down: function(options) {
-		this.down(options);
+		if (options.ctrl) {
+			this.down();
+		}
+		else {
+			this.bottom();
+		}
 	},
 
 	/**

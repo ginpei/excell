@@ -305,11 +305,11 @@ describe('ExCell', ()=>{
 			};
 		});
 
-		describe('left(options)', ()=>{
+		describe('left()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 
-				excell.left(options);
+				excell.left();
 			});
 
 			it('captures the left side cell', ()=>{
@@ -325,11 +325,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('left(options) at the left end cell', ()=>{
+		describe('left() at the left end cell', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell4);
 
-				excell.left(options);
+				excell.left();
 			});
 
 			it('leaves a current cell', ()=>{
@@ -337,12 +337,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('left(options) with a ctrl key', ()=>{
+		describe('leftEnd()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell6);
 
-				options.ctrl = true;
-				excell.left(options);
+				excell.leftEnd();
 			});
 
 			it('moves a current cell to the left end one', ()=>{
@@ -350,11 +349,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('right(options)', ()=>{
+		describe('right()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 
-				excell.right(options);
+				excell.right();
 			});
 
 			it('moves a current cell to the right side one', ()=>{
@@ -362,11 +361,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('right(options) at the right end cell', ()=>{
+		describe('right() at the right end cell', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell6);
 
-				excell.right(options);
+				excell.right();
 			});
 
 			it('leaves a current cell', ()=>{
@@ -374,12 +373,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('right(options) with a ctrl key', ()=>{
+		describe('rightEnd()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell4);
 
-				options.ctrl = true;
-				excell.right(options);
+				excell.rightEnd();
 			});
 
 			it('moves a current cell to the right end one', ()=>{
@@ -387,11 +385,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('up(options)', ()=>{
+		describe('up()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 
-				excell.up(options);
+				excell.up();
 			});
 
 			it('moves a current cell to the above one', ()=>{
@@ -399,11 +397,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('up(options) at the up end cell', ()=>{
+		describe('up() at the up end cell', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell2);
 
-				excell.up(options);
+				excell.up();
 			});
 
 			it('leaves a current cell', ()=>{
@@ -411,12 +409,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('up(options) with a ctrl key', ()=>{
+		describe('top()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell8);
 
-				options.ctrl = true;
-				excell.up(options);
+				excell.top();
 			});
 
 			it('moves a current cell to the top one', ()=>{
@@ -424,11 +421,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('down(options)', ()=>{
+		describe('down()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell5);
 
-				excell.down(options);
+				excell.down();
 			});
 
 			it('moves a current cell to the under one', ()=>{
@@ -436,11 +433,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('down(options) at the down end cell', ()=>{
+		describe('down() at the down end cell', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell8);
 
-				excell.down(options);
+				excell.down();
 			});
 
 			it('leaves a current cell', ()=>{
@@ -448,12 +445,11 @@ describe('ExCell', ()=>{
 			});
 		});
 
-		describe('down(options) with a ctrl key', ()=>{
+		describe('bottom()', ()=>{
 			beforeEach(()=>{
 				excell.select(elCell2);
 
-				options.ctrl = true;
-				excell.down(options);
+				excell.bottom();
 			});
 
 			it('moves a current cell to the bottom one', ()=>{
