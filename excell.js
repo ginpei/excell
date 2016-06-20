@@ -212,7 +212,7 @@ Object.assign(ExCell.prototype, {
 	/**
 	 */
 	rightEnd: function() {
-		this._moveHorizontally(+Infinity);
+		this._moveHorizontally(Infinity);
 	},
 
 	/**
@@ -268,7 +268,7 @@ Object.assign(ExCell.prototype, {
 	/**
 	 */
 	bottom: function(options) {
-		this._moveVertically(+Infinity);
+		this._moveVertically(Infinity);
 	},
 
 	/**
