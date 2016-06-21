@@ -20,6 +20,7 @@ describe('ExCell', ()=>{
 	var elCell8;
 	// var elCell9;
 	var document;
+	var Event;
 
 	beforeEach((done)=>{
 		jsdom.env({
@@ -34,6 +35,7 @@ describe('ExCell', ()=>{
 
 				ExCell = window.ExCell;
 				document = window.document;
+				Event = window.Event;
 				elTable = document.querySelector('#table');
 				// elCell1 = document.querySelector('#cell-1');
 				elCell2 = document.querySelector('#cell-2');
@@ -623,9 +625,20 @@ describe('ExCell', ()=>{
 		});
 	});
 
-	describe('events', ()=>{
-		describe('...', ()=>{
-			it('...');
+	describe('Events', ()=>{
+		function fire(el, type) {
+			var event = new Event(type, { bubbles: true });
+			el.dispatchEvent(event);
+		}
+
+		describe('clicking a cell', ()=>{
+			beforeEach(()=>{
+				fire(elCell5, 'click');
+			});
+
+			it('selects the cell', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell5);
+			});
 		});
 	});
 });

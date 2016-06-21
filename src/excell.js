@@ -12,6 +12,28 @@ Object.assign(ExCell, {
 		var instance = new ExCell(options);
 		return instance;
 	},
+
+	/**
+	 * @param {HTMLElement} el
+	 * @param {string} selector
+	 * @example
+	 * var elTable = ExCell.closest(elCell, 'table');
+	 */
+	closest: function(el, selector) {
+		var result;
+		if (el.closest) {
+			result = el.closest(selector);
+		}
+		else {
+			for (var elCur=el; el; el=el.parentElement) {
+				if (el.matches(selector)) {
+					break;
+				}
+			}
+			result = el;
+		}
+		return result;
+	},
 });
 
 if (!Object.assign) {
@@ -366,7 +388,7 @@ Object.assign(ExCell.prototype, {
 	 */
 	_findEventCell: function(event) {
 		var elTarget = event.target;
-		var elCell = elTarget.closest('td,th');
+		var elCell = ExCell.closest(elTarget, 'td,th');
 		return elCell;
 	},
 
