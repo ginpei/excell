@@ -96,6 +96,10 @@ Object.assign(ExCell.prototype, {
 	 * @param {HTMLElement} [elCell]
 	 */
 	select: function(elCell) {
+		if (this.elEditingCell) {
+			this.finishEditing();
+		}
+
 		if (this.elActiveCell) {
 			this.elActiveCell.classList.remove('excell-active');
 		}

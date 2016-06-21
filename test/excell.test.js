@@ -134,6 +134,27 @@ describe('ExCell', ()=>{
 				expect(elCell6.classList.contains('excell-active')).to.be.true;
 			});
 		});
+
+		describe('select(null) after starting editing', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell5);
+				excell.edit();
+				excell.elInput.value = 'edited!';
+				excell.select(null);
+			});
+
+			it('updates the specified cell', ()=>{
+				expect(elCell5.textContent).to.equal('edited!');
+			});
+
+			it('unsets a editing class name', ()=>{
+				expect(elCell5.classList.contains('excell-editing')).to.be.false;
+			});
+
+			it('deselects the specified cell', ()=>{
+				expect(elCell5.classList.contains('excell-active')).to.be.false;
+			});
+		});
 	});
 
 	describe('Edit', ()=>{
