@@ -482,15 +482,20 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_end: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			if (options.ctrl) {
 				this.bottom();
 			}
 			this.rightEnd();
+			handled = true;
 		}
+
+		return handled;
 	},
 
 	/**
@@ -498,15 +503,20 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_home: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			if (options.ctrl) {
 				this.top();
 			}
 			this.leftEnd();
+			handled = true;
 		}
+
+		return handled;
 	},
 
 	/**
@@ -514,8 +524,10 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_left: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			if (options.ctrl) {
@@ -524,7 +536,10 @@ Object.assign(ExCell.prototype, {
 			else {
 				this.left();
 			}
+			handled = true;
 		}
+
+		return handled;
 	},
 
 	/**
@@ -532,8 +547,10 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_up: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			if (options.ctrl) {
@@ -542,7 +559,10 @@ Object.assign(ExCell.prototype, {
 			else {
 				this.up();
 			}
+			handled = true;
 		}
+
+		return handled;
 	},
 
 	/**
@@ -550,8 +570,10 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_right: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			if (options.ctrl) {
@@ -560,7 +582,10 @@ Object.assign(ExCell.prototype, {
 			else {
 				this.right();
 			}
+			handled = true;
 		}
+
+		return handled;
 	},
 
 	/**
@@ -568,8 +593,10 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_down: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			if (options.ctrl) {
@@ -578,7 +605,10 @@ Object.assign(ExCell.prototype, {
 			else {
 				this.down();
 			}
+			handled = true;
 		}
+
+		return handled;
 	},
 
 	/**
@@ -586,11 +616,16 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_delete: function(options) {
+		var handled;
+
 		if (this.status() === 'editing') {
-			return false;
+			handled = false;
 		}
 		else {
 			this.deleteText();
+			handled = true;
 		}
+
+		return handled;
 	},
 });
