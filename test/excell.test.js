@@ -137,8 +137,7 @@ describe('ExCell', ()=>{
 
 		describe('select(null) after starting editing', ()=>{
 			beforeEach(()=>{
-				excell.select(elCell5);
-				excell.edit();
+				excell.edit(elCell5);
 				excell.elInput.value = 'edited!';
 				excell.select(null);
 			});
@@ -165,7 +164,11 @@ describe('ExCell', ()=>{
 				excell.edit(elCell5);
 			});
 
-			it('captures the cell element', ()=>{
+			it('captures the cell element as a active cell', ()=>{
+				expect(excell.elActiveCell).to.equal(elCell5);
+			});
+
+			it('captures the cell element as a editing cell', ()=>{
 				expect(excell.elEditingCell).to.equal(elCell5);
 			});
 
@@ -186,6 +189,30 @@ describe('ExCell', ()=>{
 
 			it('sets a class', ()=>{
 				expect(elCell5.classList.contains('excell-editing')).to.be.true;
+			});
+		});
+
+		describe('edit(elCell) with an other cell as an editing cell', ()=>{
+			beforeEach(()=>{
+				excell.select(elCell5);
+				excell.edit(elCell5);
+				excell.edit(elCell6);
+			});
+
+			it('removes a class name for an active cell from the last cell', ()=>{
+				expect(elCell5.classList.contains('excell-active')).to.false;
+			});
+
+			it('removes a class name for an editing cell from the last cell', ()=>{
+				expect(elCell5.classList.contains('excell-editing')).to.false;
+			});
+
+			it('adds a class name for an active cell to the specified cell', ()=>{
+				expect(elCell6.classList.contains('excell-active')).to.true;
+			});
+
+			it('adds a class name for an editing cell to the specified cell', ()=>{
+				expect(elCell6.classList.contains('excell-editing')).to.true;
 			});
 		});
 

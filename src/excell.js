@@ -123,6 +123,8 @@ Object.assign(ExCell.prototype, {
 			}
 		}
 
+		this.select(elCell);
+
 		var elInput = this._createElInput(elCell);
 		elCell.innerHTML = '';
 		elCell.appendChild(elInput);
