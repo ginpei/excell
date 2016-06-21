@@ -405,6 +405,10 @@ Object.assign(ExCell.prototype, {
 	 * @param {Event} event
 	 */
 	document_keypress: function(event) {
+		if (this.status() === 'ready') {
+			return;
+		}
+
 		var keyCode = event.keyCode;
 		var options = {
 			alt: event.altKey,
@@ -416,11 +420,17 @@ Object.assign(ExCell.prototype, {
 		var KEY = this.KEY;
 		for (var keyName in this.KEY) {
 			if (keyCode === KEY[keyName]) {
-				event.preventDefault();
+				var handled;
+
 				var functionName = 'document_keypress_' + keyName;
 				if (this[functionName]) {
-					this[functionName](options);
+					handled = this[functionName](options);
 				}
+
+				if (handled !== false) {
+					event.preventDefault();
+				}
+
 				break;
 			}
 		}
@@ -462,7 +472,9 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_escape: function(options) {
-		this.cancelEditing();
+		if (this.status() === 'editing') {
+			this.cancelEditing();
+		}
 	},
 
 	/**
@@ -470,10 +482,15 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_end: function(options) {
-		if (options.ctrl) {
-			this.bottom();
+		if (this.status() === 'editing') {
+			return false;
 		}
-		this.rightEnd();
+		else {
+			if (options.ctrl) {
+				this.bottom();
+			}
+			this.rightEnd();
+		}
 	},
 
 	/**
@@ -481,10 +498,15 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_home: function(options) {
-		if (options.ctrl) {
-			this.top();
+		if (this.status() === 'editing') {
+			return false;
 		}
-		this.leftEnd();
+		else {
+			if (options.ctrl) {
+				this.top();
+			}
+			this.leftEnd();
+		}
 	},
 
 	/**
@@ -492,11 +514,16 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_left: function(options) {
-		if (options.ctrl) {
-			this.leftEnd();
+		if (this.status() === 'editing') {
+			return false;
 		}
 		else {
-			this.left();
+			if (options.ctrl) {
+				this.leftEnd();
+			}
+			else {
+				this.left();
+			}
 		}
 	},
 
@@ -505,11 +532,16 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_up: function(options) {
-		if (options.ctrl) {
-			this.top();
+		if (this.status() === 'editing') {
+			return false;
 		}
 		else {
-			this.up();
+			if (options.ctrl) {
+				this.top();
+			}
+			else {
+				this.up();
+			}
 		}
 	},
 
@@ -518,11 +550,16 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_right: function(options) {
-		if (options.ctrl) {
-			this.rightEnd();
+		if (this.status() === 'editing') {
+			return false;
 		}
 		else {
-			this.right();
+			if (options.ctrl) {
+				this.rightEnd();
+			}
+			else {
+				this.right();
+			}
 		}
 	},
 
@@ -531,11 +568,16 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_down: function(options) {
-		if (options.ctrl) {
-			this.bottom();
+		if (this.status() === 'editing') {
+			return false;
 		}
 		else {
-			this.down();
+			if (options.ctrl) {
+				this.bottom();
+			}
+			else {
+				this.down();
+			}
 		}
 	},
 
@@ -544,6 +586,11 @@ Object.assign(ExCell.prototype, {
 	 * @see #document_keypress
 	 */
 	document_keypress_delete: function(options) {
-		this.deleteText();
+		if (this.status() === 'editing') {
+			return false;
+		}
+		else {
+			this.deleteText();
+		}
 	},
 });
