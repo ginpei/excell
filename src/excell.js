@@ -25,12 +25,13 @@ Object.assign(ExCell, {
 			result = el.closest(selector);
 		}
 		else {
-			for (var elCur=el; el; el=el.parentElement) {
-				if (el.matches(selector)) {
+			var elCur;
+			for (elCur=el; elCur; elCur=elCur.parentElement) {
+				if (elCur.matches(selector)) {
 					break;
 				}
 			}
-			result = el;
+			result = elCur;
 		}
 		return result;
 	},
@@ -274,7 +275,7 @@ Object.assign(ExCell.prototype, {
 		else if (direction === -Infinity) {
 			index = 0;
 		}
-			else {
+		else {
 			var curIndex = Array.from(elRow.children).indexOf(elCur);
 			index = curIndex + direction;
 		}
@@ -332,7 +333,7 @@ Object.assign(ExCell.prototype, {
 		else if (direction === -Infinity) {
 			vIndex = 0;
 		}
-			else {
+		else {
 			var vCurIndex = Array.from(elTable.children).indexOf(elRow);
 			vIndex = vCurIndex + direction;
 		}
