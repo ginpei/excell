@@ -2,6 +2,8 @@
 
 # ExCell
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ginpei/excell.svg)](https://greenkeeper.io/)
+
 Edit table cells.
 
 - [GitHub](https://github.com/ginpei/excell)
